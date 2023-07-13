@@ -1,5 +1,4 @@
-import { Image, VStack, Text, Box, FormControl, Input, Button, Link } from 'native-base';
-import { TouchableOpacity } from "react-native";
+import { Image, VStack, Box, Checkbox, ScrollView, Text } from 'native-base';
 import Logo from "./assets/Logo.png";
 import { Titulo } from './componentes/Titulo';
 import { EntradaTexto } from './componentes/EntradaTexto';
@@ -37,8 +36,9 @@ export default function Cadastro() {
           label:"Repita a senha",
           placeholder:"Insira sua senha",
           secureTextEntry: true,
-        }
-      ]
+        },
+      ],
+      checkbox: [],
     },
     {
       id: 2,
@@ -73,7 +73,47 @@ export default function Cadastro() {
           label:"Telefone",
           placeholder:"(00) 00000-0000",
           secureTextEntry: false,
-        }
+        },
+      ],
+      checkbox: [],
+    },
+    {
+      id: 3,
+      titulo: "Para finalizar, qual seu plano de saúde?",
+      entradaTexto: [],
+      checkbox: [
+        {
+          id: 1,
+          value: "Sulamerica"
+        },
+        {
+          id: 2,
+          value: "Unimed"
+        },
+        {
+          id: 3,
+          value: "Bradesco"
+        },
+        {
+          id: 4,
+          value: "Amil"
+        },
+        {
+          id: 5,
+          value: "Biosaúde"
+        },
+        {
+          id: 6,
+          value: "Biovida"
+        },
+        {
+          id: 7,
+          value: "Outros"
+        },
+        {
+          id: 8,
+          value: "Não tenho plano"
+        },
       ]
     }
   ];
@@ -91,15 +131,18 @@ export default function Cadastro() {
   }
 
   return (
-    <VStack
+    <ScrollView
       flex={1}
-      alignItems="center"
       p={5}
     >
-      <Image source={Logo} alt="Logo Voll" />
+      <Image
+        source={Logo}
+        alt="Logo Voll"
+        alignSelf="center"
+      />
       <Titulo>{secoes[numSecao].titulo}</Titulo>
       <Box>
-        {secoes[numSecao].entradaTexto.map((entrada) => {
+        {secoes[numSecao]?.entradaTexto?.map((entrada) => {
           return (
             <EntradaTexto
               key={entrada.id}
@@ -110,6 +153,23 @@ export default function Cadastro() {
           );
         })}
       </Box>
+      <Box>
+        <Text
+          color="blue.800"
+          fontWeight="bold"
+          fontSize="lg"
+          mt="2"
+          mb="2"
+        >Selecione os planos :</Text>
+        {secoes[numSecao].checkbox.map((checkbox) => {
+          return (
+            <Checkbox
+              key={checkbox.id}
+              value={checkbox.value}
+            >{checkbox.value}</Checkbox>
+          );
+        })}
+      </Box>
       {numSecao > 0 && <Botao
         bgColor="gray.400"
         onPress={() => voltarFuncao()}
@@ -117,7 +177,8 @@ export default function Cadastro() {
       <Botao
         onPress={() => avancarFuncao()}
         mt={4}
+        mb={20}
       >Avançar</Botao>
-    </VStack>
+    </ScrollView>
   );
 }
