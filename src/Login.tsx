@@ -21,6 +21,18 @@ export default function Login() {
             w="100%"
             borderRadius="lg"
             bgColor="gray.100"
+            shadow={3}
+          />
+        </FormControl>
+        <FormControl mt={3}>
+          <FormControl.Label>Senha</FormControl.Label>
+          <Input
+            placeholder="Insira sua senha"
+            size="lg"
+            w="100%"
+            borderRadius="lg"
+            bgColor="gray.100"
+            shadow={3}
           />
         </FormControl>
       </Box>
