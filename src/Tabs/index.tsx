@@ -7,44 +7,57 @@ import Perfil from "./Perfil";
 
 const Tab = createBottomTabNavigator();
 
+const screenOptions = {
+  headerShown: false,
+  tabBarStyle: {
+    backgroundColor: "#002851",
+  },
+  tabBarActiveTintColor: "#339cff",
+  tabBarInactiveTintColor: "#ffffff"
+};
+
+const tabs = [
+  {
+    id: 1,
+    name: "Principal",
+    component: Principal,
+    icon: "home",
+  },
+  {
+    id: 2,
+    name: "Consultas",
+    component: Consultas,
+    icon: "calendar",
+  },
+  {
+    id: 3,
+    name: "Explorar",
+    component: Explorar,
+    icon: "search",
+  },
+  {
+    id: 4,
+    name: "Perfil",
+    component: Perfil,
+    icon: "person",
+  },
+];
+
 export default function Tabs() {
   return (
-    <Tab.Navigator screenOptions={{
-      headerShown: false,
-      tabBarStyle: {
-        backgroundColor: "#002851",
-      },
-      tabBarActiveTintColor: "#339cff",
-      tabBarInactiveTintColor: "#ffffff"
-    }}>
-      <Tab.Screen
-        name="Principal"
-        component={Principal}
-        options={{ tabBarIcon: ({ color, size }) => (
-          <Ionicons name="home" color={color} size={size}/>
-        ) }}
-      />
-      <Tab.Screen
-        name="Consultas"
-        component={Consultas}
-        options={{ tabBarIcon: ({ color, size }) => (
-          <Ionicons name="calendar" color={color} size={size}/>
-        ) }}
-      />
-      <Tab.Screen
-        name="Explorar"
-        component={Explorar}
-        options={{ tabBarIcon: ({ color, size }) => (
-          <Ionicons name="search" color={color} size={size}/>
-        ) }}
-      />
-      <Tab.Screen
-        name="Perfil"
-        component={Perfil}
-        options={{ tabBarIcon: ({ color, size }) => (
-          <Ionicons name="person" color={color} size={size}/>
-        ) }}
-      />
+    <Tab.Navigator screenOptions={screenOptions}>
+      {tabs.map((tab) => {
+        return (
+          <Tab.Screen
+            key={tab.id}
+            name={tab.name}
+            component={tab.component}
+            options={{ tabBarIcon: ({ color, size }) => (
+              <Ionicons name={tab.icon} color={color} size={size}/>
+            ) }}
+          />
+        );
+      })}
     </Tab.Navigator>
   );
 }
