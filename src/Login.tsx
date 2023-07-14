@@ -1,11 +1,11 @@
-import { Image, VStack, Text, Box, FormControl, Input, Button, Link } from 'native-base';
+import { Image, VStack, Text, Box, Link } from 'native-base';
 import { TouchableOpacity } from "react-native";
 import Logo from "./assets/Logo.png";
 import { Titulo } from './componentes/Titulo';
 import { EntradaTexto } from './componentes/EntradaTexto';
 import { Botao } from './componentes/Botao';
 
-export default function Login() {
+export default function Login({ navigation }) {
   return (
     <VStack
       flex={1}
@@ -27,7 +27,9 @@ export default function Login() {
           placeholder="Insira sua senha"
         />
       </Box>
-      <Botao>Entrar</Botao>
+      <Botao
+        onPress={() => navigation.navigate("Tabs")}
+      >Entrar</Botao>
       <Link
         href='https://www.alura.com.br'
         mt={2}
@@ -39,7 +41,7 @@ export default function Login() {
         mt={8}
       >
         <Text>Ainda não tem conta?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
           <Text color="blue.500">Faça seu cadastro!</Text>
         </TouchableOpacity>
       </Box>
