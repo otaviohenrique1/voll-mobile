@@ -11,33 +11,38 @@ export default function Tabs() {
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
+      tabBarStyle: {
+        backgroundColor: "#002851",
+      },
+      tabBarActiveTintColor: "#339cff",
+      tabBarInactiveTintColor: "#ffffff"
     }}>
       <Tab.Screen
         name="Principal"
         component={Principal}
-        options={{ tabBarIcon: () => (
-          <Ionicons name="home" color="blue" size={24}/>
+        options={{ tabBarIcon: ({ color, size }) => (
+          <Ionicons name="home" color={color} size={size}/>
         ) }}
       />
       <Tab.Screen
         name="Consultas"
         component={Consultas}
-        options={{ tabBarIcon: () => (
-          <Ionicons name="calendar" color="blue" size={24}/>
+        options={{ tabBarIcon: ({ color, size }) => (
+          <Ionicons name="calendar" color={color} size={size}/>
         ) }}
       />
       <Tab.Screen
         name="Explorar"
         component={Explorar}
-        options={{ tabBarIcon: () => (
-          <Ionicons name="search" color="blue" size={24}/>
+        options={{ tabBarIcon: ({ color, size }) => (
+          <Ionicons name="search" color={color} size={size}/>
         ) }}
       />
       <Tab.Screen
         name="Perfil"
         component={Perfil}
-        options={{ tabBarIcon: () => (
-          <Ionicons name="person" color="blue" size={24}/>
+        options={{ tabBarIcon: ({ color, size }) => (
+          <Ionicons name="person" color={color} size={size}/>
         ) }}
       />
     </Tab.Navigator>
